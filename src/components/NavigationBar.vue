@@ -37,12 +37,12 @@
 
 	<Transition name="sideBar">
 		<!-- side-bar phone -->
-		<aside class="md:hidden w-full h-screen bg-oren shadow-2xl font-roboto flex flex-col justify-end" aria-label="Sidebar" v-if="sideBar">
+		<aside class="md:hidden w-full h-screen bg-oren shadow-2xl font-roboto flex flex-col justify-start" aria-label="Sidebar" v-if="sideBar">
 			<div class="pt-20 overflow-y-auto py-4 px-3 rounded">
 				<ul class="space-y-2 text-white">
 					<li class="flex gap-x-2 items-center">
 						<img src="../assets/userMan.png" class="w-[50px]" alt="" />
-						<p class="">Profil</p>
+						<p class="">{{ user }}</p>
 					</li>
 					<li class="">
 						<router-link to="/" class="flex gap-x-3 items-center" @click="logout">

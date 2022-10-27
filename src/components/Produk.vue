@@ -5,13 +5,17 @@
 			<input type="text" class="form-control w-44 md:w-72 lg:w-96 text-sm md:text-base px-3 py-1.5 block border-2 border-oren tracking-wider font-normal text-oren bg-transparent shadow-xl rounded transition-all duration-500 outline-none focus:text-oren focus:ring-2 focus:border-oren focus:ring-oren" placeholder="Cari produk" @keypress.enter="keyword" v-model="key" />
 			<button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-4 md:px-6 py-2.5 text-xs md:text-sm border-2 border-oren bg-oren text-white font-medium tracking-widest leading-tight uppercase rounded shadow-xl hover:scale-95 hover:shadow-none transition-all duration-300" @click="keyword">Cari</button>
 		</div>
-		<!-- display -->
+		<!-- display card -->
 		<div class="py-16 px-2 md:px-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-2 md:gap-5 lg:gap-10">
 			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.id)">
-				<div class="shadow-2xl transition-all duration-300 border-2 border-terqu rounded-lg hover:scale-95 hover:shadow-none w-[160px] md:w-[200px] lg:w-[300px] cursor-pointer">
+				<div class="shadow-2xl transition-all duration-300 border-2 rounded-lg md:hover:scale-95 md:hover:shadow-none active:scale-95 active:shadow-none w-[160px] md:w-[200px] lg:w-[300px] cursor-pointer">
+					<!-- image -->
 					<a data-mdb-ripple="true" data-mdb-ripple-color="light">
 						<img class="w-full h-[120px] md:h-[200px] lg:h-[200px] rounded-t-lg" :src="item.images[0]" alt="" />
 					</a>
+					<!-- discount -->
+					<p class="px-1 text-xs md:text-sm relative bottom-[110px] md:bottom-[190px] left-[0px] rounded-r-lg w-fit bg-oren text-white shadow-lg">Diskon {{ Math.round(item.discountPercentage) }}%</p>
+					<!-- description -->
 					<div class="p-2 md:p-4 h-[100px] md:h-[150px] lg:h-[170px] flex flex-col justify-between rounded-b-lg">
 						<div class="">
 							<p class="text-xs md:text-sm lg:text-lg text-gray-900 font-lora font-semibold leading-tight overflow-hidden">{{ item.title }}</p>

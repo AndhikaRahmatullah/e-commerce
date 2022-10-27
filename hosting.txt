@@ -1,0 +1,13 @@
+link hosting: byet.host/free-hosting/news
+
+Sub DomainName: shepiedika
+Password: AQ$57d$y4Nks4rQ
+
+Cpanel :
+Cpanel Username: b7_32873844
+Cpanel Password: AQ$57d$y4Nks4rQ
+Your URL: http://shepiedika.byethost7.com or http://www.shepiedika.byethost7.com
+FTP Server : ftpupload.net
+FTP Login : b7_32873844
+FTP Password : AQ$57d$y4Nks4rQ
+Cpanel URL: http://cpanel.byethost7.com/

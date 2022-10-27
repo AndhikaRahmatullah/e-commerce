@@ -1,6 +1,6 @@
 <template>
 	<Loading id="loadingDisplay" />
-	<div class="Login px-5 py-5 md:py-0 md:px-14 flex flex-col justify-end md:justify-center gap-y-5 md:gap-y-16 h-screen bg-cover font-roboto hidden" id="head">
+	<div class="Login px-5 py-5 md:py-0 md:px-14 flex flex-col justify-center gap-y-5 md:gap-y-16 h-screen bg-cover font-roboto hidden" id="head">
 		<div class="">
 			<!-- greeting -->
 			<div class="text-white font-fredoka w-fit">
@@ -8,7 +8,7 @@
 					<p class="text-5xl md:text-5xl lg:text-7xl" v-show="loginTrue" v-if="transition">Shepie</p>
 				</Transition>
 				<Transition name="slide-fade2">
-					<p class="text-4xl md:text-5xl lg:text-7xl absolute bottom-[100px] md:bottom-[120px] tracking-wide" v-show="loginFalse">
+					<p class="text-4xl md:text-5xl lg:text-7xl absolute bottom-[120px] tracking-wide" v-show="loginFalse">
 						Selamat datang, <span class="bg-gradient-to-tr from-oren via-oren2 to-oren text-transparent bg-clip-text">{{ user }}</span>
 					</p>
 				</Transition>
@@ -25,16 +25,16 @@
 		<Transition name="dropDown">
 			<div class="flex gap-3 items-center" v-show="loginTrue" v-if="transition">
 				<div class="md:w-[400px] lg:w-96">
-					<input type="text" class="form-control block w-full text-sm md:text-base px-3 py-1.5 border-2 border-white tracking-wider font-normal text-oren bg-white bg-clip-padding rounded transition-all duration-500 outline-none focus:text-oren focus:bg-transparent focus:border-oren focus:ring-0" placeholder="Masukan username" v-model="username" @keypress.enter="login(username)" />
+					<input type="text" class="form-control block w-full text-sm md:text-base px-3 py-1.5 border-2 border-oren md:border-white tracking-wider font-normal text-oren bg-transparent md:bg-white bg-clip-padding rounded transition-all duration-500 outline-none focus:text-oren focus:bg-transparent focus:border-oren focus:ring-0" placeholder="Masukan username" v-model="username" @keypress.enter="login(username)" />
 				</div>
-				<button type="button" class="inline-block px-4 md:px-6 py-2.5 bg-oren border-2 border-oren text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300" @click="login(username)">lanjut</button>
+				<button type="button" class="inline-block px-4 md:px-6 py-2.5 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300" @click="login(username)">lanjut</button>
 			</div>
 		</Transition>
 
 		<!-- button actions -->
 		<Transition name="slide-fade2">
-			<div class="absolute bottom-[20px] md:bottom-[40px]" v-show="loginFalse" v-if="transition">
-				<router-link :to="'/home/' + user" class="mr-2 inline-block px-4 md:px-6 py-2.5 bg-oren border-2 border-oren text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300">masuk</router-link>
+			<div class="absolute bottom-[40px]" v-show="loginFalse" v-if="transition">
+				<router-link :to="'/home/' + user" class="mr-2 inline-block px-4 md:px-6 py-2.5 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300">masuk</router-link>
 				<button type="button" class="inline-block px-4 md:px-6 py-2.5 bg-gray-700 border-2 border-gray-700 text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-white hover:text-gray-700 hover:border-white hover:shadow-lg transition-all duration-300" @click="logout()">keluar dari {{ user }}</button>
 			</div>
 		</Transition>
