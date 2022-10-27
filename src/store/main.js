@@ -2,24 +2,49 @@ import { defineStore } from "pinia";
 
 export const useStore = defineStore('main', {
 	state: () => ({
-		count: 0,
+		keranjangTotal: 0,
 		user: '',
-		loginGreeting: false,
-		loginForm: true,
-		loginButtonActions: false,
+		loginFalse: false,
+		loginTrue: true,
 	}),
 	getters: {
 	},
 	actions: {
 		login(userBaru) {
-			this.user = userBaru
+			let userBaruKapital = userBaru;
+			userBaruKapital = userBaruKapital.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+				return letter.toUpperCase();
+			});
+			let res = userBaruKapital.replace(/[/]/g, "")
+			this.user = res
 			if (this.user === '') {
 				alert(`Mohon masukan username`)
 			} else {
-				this.loginGreeting = true
-				this.loginForm = false
-				this.loginButtonActions = true
+				this.loginFalse = true
+				this.loginTrue = false
 			}
-		}
+		},
+
+		// APIs
+
+		//  All Products
+		apiDataAll() {
+			return fetch(`https://dummyjson.com/products`)
+				.then((res) => res.json())
+				.then((resu) => resu.products)
+		},
+
+		// by Search
+		apiDataSearch(key) {
+			return fetch(`https://dummyjson.com/products/search?q=${key}`)
+				.then((res) => res.json())
+				.then((result) => {
+					if (result.total === 0) {
+						throw new Error(`Produk tidak ditemukan`);
+					}
+					return result.products;
+				});
+		},
+
 	},
 })

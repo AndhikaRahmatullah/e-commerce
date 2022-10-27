@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import './style.css'
 import 'tw-elements'
+import 'flowbite';
 
 const pinia = createPinia()
 
