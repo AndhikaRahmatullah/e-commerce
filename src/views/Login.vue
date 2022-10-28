@@ -9,7 +9,7 @@
 				</Transition>
 				<Transition name="slide-fade2">
 					<p class="text-4xl md:text-5xl lg:text-7xl absolute bottom-[120px] tracking-wide" v-show="loginFalse">
-						Selamat datang, <span class="bg-gradient-to-tr from-oren via-oren2 to-oren text-transparent bg-clip-text">{{ user }}</span>
+						{{ greetingByTime }}, <span class="bg-gradient-to-tr from-oren via-oren2 to-oren text-transparent bg-clip-text">{{ user }}</span>
 					</p>
 				</Transition>
 			</div>
@@ -73,6 +73,20 @@
 
 		computed: {
 			...mapState(useStore, ["user", "loginFalse", "loginTrue"]),
+
+			greetingByTime() {
+				let hour = new Date().getHours();
+				let text = "";
+				if (hour >= 3 && hour <= 10) {
+					return (text = `Selamat Pagi`);
+				} else if (hour >= 11 && hour <= 15) {
+					return (text = `Selamat Siang`);
+				} else if (hour >= 16 && hour <= 19) {
+					return (text = `Selamat Sore`);
+				} else {
+					return (text = `Selamat Malam`);
+				}
+			},
 		},
 
 		methods: {
