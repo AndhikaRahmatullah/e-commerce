@@ -1,6 +1,6 @@
 <template>
 	<!-- laptop -->
-	<div id="head" class="px-2 py-5 md:flex flex-row justify-between items-center font-roboto bg-oren text-white shadow-2xl hidden">
+	<div id="head" class="px-2 py-5 md:flex flex-row justify-between items-center font-roboto bg-gradient-to-br from-oren to-oren2 text-white shadow-2xl hidden">
 		<div class="">
 			<p class="text-3xl font-fredoka tracking-wider">Shepie</p>
 		</div>
@@ -20,7 +20,7 @@
 									<path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
 								</svg>
 							</button>
-							<ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
+							<ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
 								<li>
 									<a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="#">Profil</a>
 								</li>
@@ -44,6 +44,10 @@
 						<img src="../assets/userMan.png" class="w-[50px]" alt="" />
 						<p class="">{{ user }}</p>
 					</li>
+					<li class="flex gap-x-2 items-center">
+						<img src="../assets/cart.png" class="w-[50px]" alt="" />
+						<p class="">+{{ keranjangTotal }}</p>
+					</li>
 					<li class="">
 						<router-link to="/" class="flex gap-x-3 items-center" @click="logout">
 							<img src="../assets/logout.png" class="w-[44px]" alt="" />
@@ -57,7 +61,7 @@
 
 	<!-- phone -->
 	<div class="flex">
-		<div class="md:hidden w-full hamburger bg-oren border-b-2 border-white transition-all duration-[1000ms] absolute top-0 left-0 p-2 flex justify-between items-center">
+		<div class="md:hidden w-full hamburger bg-gradient-to-b from-oren2 to-oren border-b-2 border-white transition-all duration-[1000ms] absolute top-0 left-0 p-2 flex justify-between items-center">
 			<label for="check">
 				<input type="checkbox" id="check" @click="hamburger" />
 				<span class="bg-white"></span>
@@ -86,9 +90,7 @@
 			Keranjang,
 		},
 
-		mounted() {
-			useStore().user;
-		},
+		mounted() {},
 
 		computed: {
 			...mapState(useStore, ["user", "keranjangTotal"]),

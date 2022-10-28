@@ -9,7 +9,7 @@
 				</Transition>
 				<Transition name="slide-fade2">
 					<p class="text-4xl md:text-5xl lg:text-7xl absolute bottom-[120px] tracking-wide" v-show="loginFalse">
-						{{ greetingByTime }}, <span class="bg-gradient-to-tr from-oren via-oren2 to-oren text-transparent bg-clip-text">{{ user }}</span>
+						{{ greetingByTime }}, <span class="bg-gradient-to-br from-oren to-oren2 text-transparent bg-clip-text">{{ user }}</span>
 					</p>
 				</Transition>
 			</div>

@@ -10,7 +10,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'oren': '#EA9615',
-				'oren2': '#B47310',
+				'oren2': '#FACA15',
 				'ijo': '#15EA2C',
 				'biru': '#1569EA',
 				'ungu': '#44455B',
