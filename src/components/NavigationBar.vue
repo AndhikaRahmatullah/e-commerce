@@ -46,7 +46,7 @@
 					</li>
 					<li class="flex gap-x-2 items-center">
 						<img src="../assets/cart.png" class="w-[50px]" alt="" />
-						<p class="">+{{ keranjangTotal }}</p>
+						<p class="">Keranjang +{{ keranjangTotal }}</p>
 					</li>
 					<li class="">
 						<router-link to="/" class="flex gap-x-3 items-center" @click="logout">
