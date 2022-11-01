@@ -5,6 +5,7 @@
 			<input type="text" class="form-control w-44 md:w-72 lg:w-96 text-sm md:text-base px-3 py-1.5 block border-2 border-oren tracking-wider font-normal text-oren bg-transparent shadow-xl rounded transition-all duration-500 outline-none focus:text-oren focus:ring-2 focus:border-oren focus:ring-oren font-lora" placeholder="Cari produk" @keypress.enter="keyword" v-model="key" />
 			<a data-mdb-ripple="true" data-mdb-ripple-color="light" href="#produk" class="inline-block px-4 md:px-6 py-2.5 text-xs md:text-sm border-2 border-oren bg-oren text-white font-medium tracking-wider leading-tight uppercase rounded shadow-xl active:scale-95 active:shadow-none md:hover:scale-95 md:hover:shadow-none transition-all duration-300 font-roboto" @click="keyword">Cari</a>
 		</div>
+
 		<!-- kategori -->
 		<div class="mx-5 mt-10 lg:mt-5 font-roboto">
 			<p class="md:text-xl lg:text-2xl mb-3 text-gray-500 font-lora font-semibold w-fit uppercase">Kategori</p>
@@ -18,15 +19,17 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- category tag -->
 		<div class="mx-5 pt-10 text-sm md:text-lg lg:text-xl flex flex-row items-center gap-x-2 font-roboto" v-show="desCategory">
 			<p class="text-gray-500">Filter :</p>
 			<p class="py-1 px-2 bg-oren rounded-md text-white">{{ desCategoryName }}</p>
 			<img src="../assets/delete.png" alt="" class="w-[30px] md:w-[40px] cursor-pointer transition-all duration-75 active:scale-90" @click="hapusKategori" />
 		</div>
+
 		<!-- display card -->
 		<div class="py-10 lg:py-16 px-2 md:px-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-2 gap-y-4 md:gap-5 lg:gap-10">
-			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.id)" id="produk">
+			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.title, item.price)" id="produk">
 				<div class="shadow-2xl transition-all duration-300 border-2 border-gray-300 rounded-lg md:hover:scale-95 md:hover:shadow-none active:scale-95 active:shadow-none w-[160px] md:w-[200px] lg:w-[300px] cursor-pointer">
 					<!-- image -->
 					<a data-mdb-ripple="true" data-mdb-ripple-color="light" class="relative">
@@ -60,16 +63,24 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- error massage -->
 		<div class="flex justify-center">
 			{{ errorMassage }}
 		</div>
+
+		<!-- alert -->
+		<Transition name="alert">
+			<Alert v-if="alertStatus" :alertValue="alertValue" />
+		</Transition>
 	</div>
 </template>
 
 <script>
 	import { useStore } from "../store/main";
 	import { mapState, mapActions } from "pinia";
+	import Alert from "../components/Alert.vue";
+
 	export default {
 		name: "Produk",
 
@@ -79,11 +90,18 @@
 			});
 		},
 
+		components: {
+			Alert,
+			Notification,
+		},
+
 		data() {
 			return {
 				key: "",
 				dataProduk: null,
 				errorMassage: "",
+				alertStatus: false,
+				alertValue: "",
 				desCategory: false,
 				desCategoryName: "",
 				kategoriProduk: [
@@ -111,16 +129,12 @@
 			};
 		},
 
-		created() {
-			// this.kategori();
-		},
-
 		mounted() {
 			this.getAllProducts();
 		},
 
 		computed: {
-			...mapState(useStore, ["keranjangTotal"]),
+			...mapState(useStore, ["keranjangTotal", "keranjangValue"]),
 		},
 
 		methods: {
@@ -162,8 +176,15 @@
 				}
 			},
 
-			produk(id) {
+			produk(productName, productPrice) {
 				this.tambahKeranjang();
+				this.alert(productName);
+				const price = productPrice * 15500;
+				const store = useStore();
+				store.$patch({
+					// like making a todolist
+					keranjangValue: [{ nama: productName, harga: price }, ...this.keranjangValue],
+				});
 			},
 
 			async kategori(nama) {
@@ -252,7 +273,30 @@
 					return result;
 				}
 			},
+
+			alert(id) {
+				this.alertValue = `${id} ditambah ke dalam keranjang !`;
+				this.alertStatus = true;
+				setTimeout(() => {
+					this.alertStatus = false;
+				}, 1000);
+			},
 		},
 	};
 </script>
-<style></style>
+
+<style>
+	.alert-enter-active {
+		transition: all 0.5s ease;
+	}
+
+	.alert-leave-active {
+		transition: all 0.5s ease;
+	}
+
+	.alert-enter-from,
+	.alert-leave-to {
+		transform: translateY(-100px);
+		opacity: 0;
+	}
+</style>

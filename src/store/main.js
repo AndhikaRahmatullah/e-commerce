@@ -3,11 +3,19 @@ import { defineStore } from "pinia";
 export const useStore = defineStore('main', {
 	state: () => ({
 		keranjangTotal: 0,
+		keranjangValue: [],
 		user: '',
 		loginFalse: false,
 		loginTrue: true,
 	}),
 	getters: {
+		capitalUser: (state) => {
+			let userBaru = state.user
+			userBaru = userBaru.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+				return letter.toUpperCase();
+			});
+			return state.user = userBaru
+		}
 	},
 	actions: {
 		login(userBaru) {

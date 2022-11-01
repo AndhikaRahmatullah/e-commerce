@@ -5,8 +5,10 @@
 			<p class="text-3xl font-fredoka tracking-wider">Shepie</p>
 		</div>
 		<div class="flex items-center gap-10">
-			<div class="flex items-center gap-1">
-				<Keranjang />
+			<div class="flex items-center gap-1 cursor-pointer">
+				<router-link :to="'/home/' + user + '/keranjang'">
+					<img src="../assets/cart.png" class="w-[40px]" alt="" />
+				</router-link>
 				<p class="">+{{ keranjangTotal }}</p>
 			</div>
 			<div class="flex items-center mr-5">
@@ -44,9 +46,11 @@
 						<img src="../assets/userMan.png" class="w-[50px]" alt="" />
 						<p class="">{{ user }}</p>
 					</li>
-					<li class="flex gap-x-2 items-center">
-						<img src="../assets/cart.png" class="w-[50px]" alt="" />
-						<p class="">Keranjang +{{ keranjangTotal }}</p>
+					<li class="">
+						<router-link :to="'/home/' + user + '/keranjang'" class="flex gap-x-2 items-center">
+							<img src="../assets/cart.png" class="w-[50px]" alt="" />
+							<p class="">Keranjang +{{ keranjangTotal }}</p>
+						</router-link>
 					</li>
 					<li class="">
 						<router-link to="/" class="flex gap-x-3 items-center" @click="logout">
@@ -76,7 +80,6 @@
 <script>
 	import { useStore } from "../store/main";
 	import { mapState, mapActions } from "pinia";
-	import Keranjang from "./Keranjang.vue";
 	export default {
 		name: "NavigatorBar",
 
@@ -86,9 +89,7 @@
 			};
 		},
 
-		components: {
-			Keranjang,
-		},
+		components: {},
 
 		mounted() {},
 
@@ -191,5 +192,19 @@
 		width: 50%;
 		transform: translate(30px, -11px) rotatez(45deg);
 		background: white;
+	}
+
+	.kp-enter-active {
+		transition: all 0.5s ease;
+	}
+
+	.kp-leave-active {
+		transition: all 0.5s ease;
+	}
+
+	.kp-enter-from,
+	.kp-leave-to {
+		transform: translateY(-100px);
+		opacity: 0;
 	}
 </style>
