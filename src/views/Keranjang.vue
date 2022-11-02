@@ -75,7 +75,7 @@
 				this.loading = false;
 			}, 1000);
 
-			this.totalHarga();
+			// this.totalHarga();
 		},
 
 		computed: {
@@ -99,14 +99,18 @@
 			},
 
 			totalHarga() {
-				let arr = [];
-				for (const x of this.keranjangValue) {
-					arr.push(x.harga);
+				if (this.keranjangTotal >= 1) {
+					let arr = [];
+					for (const x of this.keranjangValue) {
+						arr.push(x.harga);
+					}
+					let sum = arr.reduce((a, b) => {
+						return a + b;
+					});
+					return this.prettyPrice(sum);
+				} else {
+					return `0`;
 				}
-				let sum = arr.reduce((a, b) => {
-					return a + b;
-				});
-				return this.prettyPrice(sum);
 			},
 
 			alert(text) {
