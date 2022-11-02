@@ -33,6 +33,10 @@ export const useStore = defineStore('main', {
 			}
 		},
 
+		hapusProdukKeranjang(id) {
+			return (this.keranjangValue = this.keranjangValue.filter((produk) => produk.id != id))
+		},
+
 		// APIs
 
 		//  All Products

@@ -29,7 +29,7 @@
 
 		<!-- display card -->
 		<div class="py-10 lg:py-16 px-2 md:px-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-2 gap-y-4 md:gap-5 lg:gap-10">
-			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.title, item.price)" id="produk">
+			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.title, item.price, item.images[0])" id="produk">
 				<div class="shadow-2xl transition-all duration-300 border-2 border-gray-300 rounded-lg md:hover:scale-95 md:hover:shadow-none active:scale-95 active:shadow-none w-[160px] md:w-[200px] lg:w-[300px] cursor-pointer">
 					<!-- image -->
 					<a data-mdb-ripple="true" data-mdb-ripple-color="light" class="relative">
@@ -176,14 +176,15 @@
 				}
 			},
 
-			produk(productName, productPrice) {
+			produk(productName, productPrice, productImage) {
 				this.tambahKeranjang();
 				this.alert(productName);
 				const price = productPrice * 15500;
+				const id = Math.random();
 				const store = useStore();
 				store.$patch({
 					// like making a todolist
-					keranjangValue: [{ nama: productName, harga: price }, ...this.keranjangValue],
+					keranjangValue: [{ id: id, nama: productName, harga: price, gambar: productImage }, ...this.keranjangValue],
 				});
 			},
 

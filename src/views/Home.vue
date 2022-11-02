@@ -1,15 +1,15 @@
 <template>
 	<Loading id="loadingDisplay" />
-	<div class="Home hidden" id="head">
+	<div class="Home hidden" id="head" v-show="showNotif">
 		<NavigationBar />
 		<div class="pt-[80px] md:pt-0">
-			<Carousel v-show="showNotif" />
+			<Carousel />
 			<Produk />
-			<Transition name="notification">
-				<Notification @closeNotif="callback" v-show="!showNotif" />
-			</Transition>
 		</div>
 	</div>
+	<Transition name="notification">
+		<Notification @closeNotif="callback" v-show="!showNotif" />
+	</Transition>
 </template>
 
 <script>

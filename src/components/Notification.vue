@@ -1,5 +1,5 @@
 <template>
-	<div class="fixed md:absolute lg:fixed top-4 w-full">
+	<div class="flex justify-center items-center h-screen w-full">
 		<div class="mx-5 h-[600px] md:h-[450px] lg:h-[600px] bg-gradient-to-br from-[#233ADC] via-[#2396DC] to-[#23DCC5] border-2 border-gray-300 rounded-lg shadow-2xl flex flex-col justify-between select-none" role="alert">
 			<!-- body -->
 			<div class="mt-[100px] md:mt-[60px] lg:mt-[160px] flex flex-col justify-center items-center">
