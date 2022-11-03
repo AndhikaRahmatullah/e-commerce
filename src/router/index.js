@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Keranjang from '../views/Keranjang.vue'
 import Profile from '../views/Profile.vue'
+import DetailProduct from '../views/DetailProduct.vue'
 
 const routes = [
 	{
@@ -29,6 +30,16 @@ const routes = [
 		path: '/home/:user/profile',
 		name: 'profile',
 		component: Profile
+	},
+	{
+		path: '/home/:user/detailproduct',
+		name: 'detailProductOnly',
+		component: Login
+	},
+	{
+		path: '/home/:user/detailproduct/:id',
+		name: 'detailProduct',
+		component: DetailProduct
 	},
 ]
 

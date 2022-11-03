@@ -28,36 +28,56 @@
 		</div>
 
 		<!-- display card -->
-		<div class="py-10 lg:py-16 px-2 md:px-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-2 gap-y-4 md:gap-5 lg:gap-10">
-			<div class="" v-for="item in dataProduk" :key="item.id" @click="produk(item.title, item.price, item.images[0])" id="produk">
+		<div class="py-10 lg:py-16 px-2 md:px-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-2 gap-y-4 md:gap-5 lg:gap-10 select-none">
+			<div class="" v-for="item in dataProduk" :key="item.id" id="produk">
 				<div class="shadow-2xl transition-all duration-300 border-2 border-gray-300 rounded-lg md:hover:scale-95 md:hover:shadow-none active:scale-95 active:shadow-none w-[160px] md:w-[200px] lg:w-[300px] cursor-pointer">
 					<!-- image -->
-					<a data-mdb-ripple="true" data-mdb-ripple-color="light" class="relative">
-						<img class="w-full h-[120px] md:h-[200px] lg:h-[270px] rounded-t-lg" :src="item.images[0]" alt="" />
-					</a>
+					<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
+						<a data-mdb-ripple="true" data-mdb-ripple-color="light" class="relative">
+							<img class="w-full h-[120px] md:h-[200px] lg:h-[270px] rounded-t-lg" :src="item.images[0]" alt="" />
+						</a>
+					</router-link>
+
 					<!-- discount -->
-					<div class="w-fit px-1 text-xs md:text-sm relative bottom-[120px] md:bottom-[200px] lg:bottom-[270px] left-[0px] flex flex-col justify-center items-center rounded-tl-md rounded-br-md bg-oren2 text-white shadow-lg font-roboto">
-						<p class="text-red-500">{{ Math.round(item.discountPercentage) }}%</p>
-						<p class="">OFF</p>
-					</div>
+					<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
+						<div class="w-fit px-1 text-xs md:text-sm relative bottom-[120px] md:bottom-[200px] lg:bottom-[270px] left-[0px] flex flex-col justify-center items-center rounded-tl-md rounded-br-md bg-oren2 text-white shadow-lg font-roboto">
+							<p class="text-red-500">{{ Math.round(item.discountPercentage) }}%</p>
+							<p class="">OFF</p>
+						</div>
+					</router-link>
+
 					<!-- description -->
-					<div class="p-2 pt-0 lg:p-4 md:pt-0 lg:pt-0 h-[120px] md:h-[160px] lg:h-[170px] flex flex-col justify-between rounded-b-lg">
+					<div class="p-2 pt-0 lg:p-4 md:pt-0 lg:pt-0 h-[130px] md:h-[160px] lg:h-[185px] flex flex-col justify-between rounded-b-lg">
 						<!-- des.title -->
-						<div class="relative bottom-[30px]">
-							<p class="h-[33px] md:h-[44px] lg:h-[61px] text-xs md:text-sm lg:text-lg text-gray-900 font-lora font-semibold leading-tight overflow-hidden">{{ item.title }}</p>
-						</div>
+						<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
+							<div class="relative bottom-[30px]">
+								<p class="h-[33px] md:h-[44px] lg:h-[61px] text-xs md:text-sm lg:text-lg text-gray-900 font-lora font-semibold leading-tight overflow-hidden">{{ item.title }}</p>
+							</div>
+						</router-link>
+
 						<!-- des.freeOngkir -->
-						<div class="relative bottom-[98px] md:bottom-[130px] lg:bottom-[139px] right-[9px] lg:right-[18px]" v-if="Math.round(item.discountPercentage) >= 15">
-							<img src="../assets/gratisOngkir2.png" alt="" class="w-[60px] md:w-[70px]" />
-						</div>
+						<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
+							<div class="relative bottom-[98px] md:bottom-[130px] lg:bottom-[139px] right-[9px] lg:right-[18px]" v-if="Math.round(item.discountPercentage) >= 15">
+								<img src="../assets/gratisOngkir2.png" alt="" class="w-[60px] md:w-[70px]" />
+							</div>
+						</router-link>
+
 						<div class="flex flex-col items-start gap-2 font-lora">
 							<!-- des.promo -->
-							<div class="flex flex-col lg:flex-row gap-1 lg:gap-2">
-								<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm bg-oren text-white w-fit" v-if="Math.round(item.discountPercentage) >= 10">Best Sale</p>
-								<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm border border-red-600 text-red-600 w-fit" v-if="Math.round(item.discountPercentage) <= 10">Murah Lebay</p>
+							<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
+								<div class="flex flex-col lg:flex-row gap-1 lg:gap-2">
+									<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm bg-oren text-white w-fit" v-if="Math.round(item.discountPercentage) >= 10">Best Sale</p>
+									<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm border border-red-600 text-red-600 w-fit" v-if="Math.round(item.discountPercentage) <= 10">Murah Lebay</p>
+								</div>
+							</router-link>
+
+							<!-- des.footer -->
+							<div class="w-full flex flex-row justify-between items-center">
+								<!-- price -->
+								<p class="text-xs md:text-sm lg:text-base font-bold tracking-wider text-oren">Rp {{ prettyPrice(item.price * 15500) }}</p>
+								<!-- keranjang -->
+								<img src="../assets/cartCard.png" alt="" class="w-[30px] md:w-[30px] lg:w-[40px]" @click="produk(item.title, item.price, item.images[0])" />
 							</div>
-							<!-- des.price -->
-							<p class="text-xs md:text-sm lg:text-base font-bold tracking-wider text-oren">Rp {{ prettyPrice(item.price * 15500) }}</p>
 						</div>
 					</div>
 				</div>
@@ -134,7 +154,7 @@
 		},
 
 		computed: {
-			...mapState(useStore, ["keranjangTotal", "keranjangValue"]),
+			...mapState(useStore, ["user", "keranjangTotal", "keranjangValue"]),
 		},
 
 		methods: {
@@ -185,6 +205,13 @@
 				store.$patch({
 					// like making a todolist
 					keranjangValue: [{ id: id, nama: productName, harga: price, gambar: productImage }, ...this.keranjangValue],
+				});
+			},
+
+			idSelect(id) {
+				const store = useStore();
+				store.$patch({
+					idProduk: (store.idProduk = id),
 				});
 			},
 

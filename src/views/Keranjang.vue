@@ -124,8 +124,16 @@
 			prettyPrice(priceItem) {
 				const price = priceItem;
 				const x = price.toString();
-
-				if (x.length === 9) {
+				if (x.length === 10) {
+					let text4 = x.slice(x.length - 3),
+						text3 = x.slice(4, x.length - 3),
+						text2 = x.slice(1, 4),
+						text1 = x.slice(0, 1),
+						result2 = text1.concat(".", text2),
+						result1 = result2.concat(".", text3),
+						result = result1.concat(".", text4);
+					return result;
+				} else if (x.length === 9) {
 					let text3 = x.slice(x.length - 3),
 						text2 = x.slice(3, x.length - 3),
 						text1 = x.slice(0, 3),

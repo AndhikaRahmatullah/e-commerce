@@ -5,6 +5,7 @@ export const useStore = defineStore('main', {
 		keranjangTotal: 0,
 		keranjangValue: [],
 		user: '',
+		idProduk: 0,
 		loginFalse: false,
 		loginTrue: true,
 	}),
@@ -44,6 +45,15 @@ export const useStore = defineStore('main', {
 			return fetch(`https://dummyjson.com/products?limit=100&skip=0&select=title,price,description,price,discountPercentage,rating,stock,brand,category,images`)
 				.then((res) => res.json())
 				.then((resu) => resu.products)
+		},
+
+		// by Id
+		apiDataId() {
+			return fetch(`https://dummyjson.com/products/${this.idProduk}`)
+				.then((response) => response.json())
+				.then((result) => {
+					return result;
+				});
 		},
 
 		// by Search
