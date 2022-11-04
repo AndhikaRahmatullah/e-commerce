@@ -145,7 +145,7 @@
 
 			<!-- comments -->
 			<Transition name="comment">
-				<div class="Comments mt-10 py-5 mx-5 bg-[#B7ABC8] rounded-lg text-white shadow-2xl" v-show="statusComment" id="comments">
+				<div class="Comments mt-10 pt-5 bg-[#B7ABC8] rounded-lg text-white shadow-2xl" v-show="statusComment" id="comments">
 					<!-- title -->
 					<p class="mb-5 px-4 md:px-7 text-xl md:text-3xl w-fit bg-[#ABC8B7] rounded-r-lg text-white font-lora tracking-wide font-bold italic">Komentar Pembeli</p>
 
@@ -163,8 +163,8 @@
 					</div>
 
 					<!-- backToTop -->
-					<div class="mt-5 text-right">
-						<a href="#comments" class="mx-5 p-2 text-xs md:text-sm lg:text-base font-bold bg-[#C8B7AB] rounded-lg tracking-widest border-2 border-[#C8B7AB] shadow-xl text-white active:bg-transparent active:text-[#C8B7AB] lg:hover:bg-transparent lg:hover:text-[#C8B7AB] transition-all lg:duration-300">ATAS</a>
+					<div class="mt-5 py-3 text-center bg-[#C8B7AB] text-white border-2 border-[#C8B7AB] shadow-xl active:bg-transparent active:text-[#C8B7AB] lg:hover:bg-transparent lg:hover:text-[#C8B7AB] transition-all lg:duration-300 rounded-lg">
+						<a href="#comments" class="text-xs md:text-sm lg:text-base font-bold tracking-widest">KEMBALI KEATAS</a>
 					</div>
 				</div>
 			</Transition>
