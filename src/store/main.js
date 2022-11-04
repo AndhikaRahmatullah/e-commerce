@@ -189,5 +189,13 @@ export const useStore = defineStore('main', {
 			return result.products;
 		},
 
+		// comments 
+
+		async apiComments() {
+			const res = await fetch(`https://dummyjson.com/comments?limit=50&select=body,postId`)
+			const result = await res.json()
+			return result.comments
+		},
+
 	},
 })

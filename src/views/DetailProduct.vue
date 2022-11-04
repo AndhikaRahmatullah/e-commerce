@@ -118,13 +118,13 @@
 					<div class="lg:hidden h-[187px] py-8 w-full flex flex-col justify-center items-center gap-3 border-[3px] border-[#B7ABC8] active:bg-[#B7ABC8] transition-all duration-300 rounded-lg bg-transparent shadow-2xl" @click="show.comments = !show.comments">
 						<img src="../assets/detailComments.png" alt="" v-if="show.comments" />
 						<p class="text-xl font-semibold text-[#B7ABC8] transition-all duration-300" v-if="show.comments">Komentar</p>
-						<p class="text-xl font-semibold text-[#B7ABC8] transition-all duration-300" v-else>...</p>
+						<a href="#comments" class="py-1 px-2 text-xl font-semibold text-white bg-[#B7ABC8] rounded-lg transition-all duration-300 shadow-lg active:shadow-none lg:hover:shadow-none" @click="showComment" v-else>{{ stringComment }}</a>
 					</div>
 					<!-- lg -->
 					<div class="hidden py-8 w-full lg:flex flex-col justify-center items-center gap-3 border-[3px] border-[#B7ABC8] hover:bg-[#B7ABC8] transition-all duration-300 rounded-lg bg-transparent shadow-2xl group" @mouseenter="show.comments = false" @mouseleave="show.comments = true">
 						<img src="../assets/detailComments.png" alt="" v-if="show.comments" />
 						<p class="text-xl font-semibold text-[#B7ABC8] group-hover:text-white transition-all duration-300" v-if="show.comments">Komentar</p>
-						<p class="text-xl font-semibold text-white transition-all duration-300" v-else>...</p>
+						<button class="py-1 px-2 text-xl font-semibold text-[#B7ABC8] bg-white rounded-lg transition-all duration-300 shadow-lg active:shadow-none lg:hover:shadow-none" @click="showComment" v-else>{{ stringComment }}</button>
 					</div>
 
 					<!-- otherPromotions -->
@@ -142,6 +142,32 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- comments -->
+			<Transition name="comment">
+				<div class="Comments mt-10 py-5 mx-5 bg-[#B7ABC8] rounded-lg text-white shadow-2xl" v-show="statusComment" id="comments">
+					<!-- title -->
+					<p class="mb-5 px-4 md:px-7 text-xl md:text-3xl w-fit bg-[#ABC8B7] rounded-r-lg text-white font-lora tracking-wide font-bold italic">Komentar Pembeli</p>
+
+					<!-- card -->
+					<div class="flex flex-row justify-center items-start flex-wrap gap-3">
+						<div class="w-[280px] h-[120px] md:w-[300px] md:h-[200px] flex flex-col gap-y-0 md:gap-y-3 font-roboto border-2 border-white rounded-lg" v-for="com in dataComments" :key="com.id">
+							<!-- user -->
+							<div class="py-1 md:py-0 flex flex-row items-center border-b-2 border-white">
+								<img src="../assets/userMan.png" alt="" class="w-[30px] md:w-[64px]" />
+								<p class="text-xs md:text-base">{{ com.user.username }}</p>
+							</div>
+							<!-- userComment -->
+							<p class="p-2 text-xs md:text-base">{{ com.body }}</p>
+						</div>
+					</div>
+
+					<!-- backToTop -->
+					<div class="mt-5 text-right">
+						<a href="#comments" class="mx-5 p-2 text-xs md:text-sm lg:text-base font-bold bg-[#C8B7AB] rounded-lg tracking-widest border-2 border-[#C8B7AB] shadow-xl text-white active:bg-transparent active:text-[#C8B7AB] lg:hover:bg-transparent lg:hover:text-[#C8B7AB] transition-all lg:duration-300">ATAS</a>
+					</div>
+				</div>
+			</Transition>
 
 			<!-- buttonRouter -->
 			<div class="mt-20 mx-5 flex flex-row justify-end items-center gap-x-4">
@@ -180,11 +206,18 @@
 					comments: true,
 					otherPromotions: true,
 				},
+				dataComments: {},
+				statusComment: false,
+				stringComment: `Lihat komentar`,
 			};
 		},
 
 		components: {
 			Loading,
+		},
+
+		created() {
+			this.setComments();
 		},
 
 		mounted() {
@@ -200,7 +233,7 @@
 		},
 
 		methods: {
-			...mapActions(useStore, ["apiDataId"]),
+			...mapActions(useStore, ["apiDataId", "apiComments"]),
 
 			async setData() {
 				const x = await this.apiDataId();
@@ -313,13 +346,42 @@
 					return result;
 				}
 			},
+
+			async setComments() {
+				const comments = await this.apiComments();
+				this.dataComments = comments;
+			},
+
+			showComment() {
+				if (!this.statusComment) {
+					this.statusComment = true;
+					this.stringComment = `Tutup Komentar`;
+				} else {
+					this.statusComment = false;
+					this.stringComment = `Lihat Komentar`;
+				}
+			},
 		},
 	};
 </script>
 
 <style>
+	.comment-enter-active,
+	.comment-leave-active {
+		transition: opacity 1s ease;
+	}
+	.comment-enter-from,
+	.comment-leave-to {
+		opacity: 0;
+	}
+
 	.DetailProduct {
 		background-image: url("../assets/detailProdukBG.png");
+		min-height: 100vh;
+		background-repeat: repeat;
+	}
+	.Comments {
+		background-image: url("../assets/commentBG.png");
 		min-height: 100vh;
 		background-repeat: repeat;
 	}
