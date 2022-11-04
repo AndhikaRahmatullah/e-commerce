@@ -1,9 +1,9 @@
 <template>
 	<div class="my-10">
 		<!-- input -->
-		<div class="flex justify-center items-center gap-2 md:gap-4">
-			<input type="text" class="form-control w-44 md:w-72 lg:w-96 text-sm md:text-base px-3 py-1.5 block border-2 border-oren tracking-wider font-normal text-oren bg-transparent shadow-xl rounded transition-all duration-500 outline-none focus:text-oren focus:ring-2 focus:border-oren focus:ring-oren font-lora" placeholder="Cari produk" @keypress.enter="keyword" v-model="key" />
-			<a data-mdb-ripple="true" data-mdb-ripple-color="light" href="#produk" class="inline-block px-4 md:px-6 py-2.5 text-xs md:text-sm border-2 border-oren bg-oren text-white font-medium tracking-wider leading-tight uppercase rounded shadow-xl active:scale-95 active:shadow-none md:hover:scale-95 md:hover:shadow-none transition-all duration-300 font-roboto" @click="keyword">Cari</a>
+		<div class="flex justify-center items-center gap-2 md:gap-4 font-lora">
+			<input type="text" class="form-control w-44 md:w-72 lg:w-96 text-sm md:text-base px-3 py-1.5 block border-2 border-oren tracking-wider font-normal text-oren bg-transparent shadow-xl rounded transition-all duration-500 outline-none focus:text-oren focus:ring-2 focus:border-oren focus:ring-oren" placeholder="Cari produk" @keypress.enter="keyword" v-model="key" />
+			<a data-mdb-ripple="true" data-mdb-ripple-color="light" href="#produk" class="py-2 px-3 text-xs md:text-sm lg:text-base bg-oren rounded-lg tracking-wider border-2 border-oren shadow-xl text-white active:bg-transparent active:text-oren lg:hover:bg-transparent lg:hover:text-oren transition-all lg:duration-300" @click="keyword">CARI</a>
 		</div>
 
 		<!-- kategori -->
@@ -67,7 +67,7 @@
 							<router-link :to="'/home/' + user + '/detailproduct/' + item.id" @click="idSelect(item.id)">
 								<div class="flex flex-col lg:flex-row gap-1 lg:gap-2">
 									<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm bg-oren text-white w-fit" v-if="Math.round(item.discountPercentage) >= 10">Best Sale</p>
-									<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm border border-red-600 text-red-600 w-fit" v-if="Math.round(item.discountPercentage) <= 10">Murah Lebay</p>
+									<p class="px-1 md:px-2 py-[2px] md:py-1 text-xs lg:text-sm border border-red-600 text-red-600 w-fit" v-if="Math.round(item.discountPercentage) < 10">Murah Lebay</p>
 								</div>
 							</router-link>
 

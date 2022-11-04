@@ -2,6 +2,7 @@
 	<div class="Keranjang">
 		<!-- loadingScreen -->
 		<Loading v-if="loading" />
+
 		<!-- keranjangBody -->
 		<div class="p-5 min-h-screen text-white" v-else>
 			<div class="mb-5 flex justify-start bg-gradient-to-br from-oren to-oren2 rounded-lg shadow-2xl select-none">
@@ -9,6 +10,7 @@
 					Keranjang <span class="text-xs md:text-sm lg:text-lg">( {{ keranjangTotal }} )</span>
 				</p>
 			</div>
+
 			<!-- produk -->
 			<div class="p-2 mb-3 bg-oren font-roboto rounded-lg shadow-2xl select-none">
 				<div class="flex flex-col gap-2" v-if="keranjangTotal >= 1">
@@ -27,15 +29,20 @@
 					<p class="text-xs md:text-base lg:text-lg text-center font-lora italic tracking-wide">Anda masih belum memiliki produk di dalam keranjang !</p>
 				</div>
 			</div>
+
 			<!-- totalHarga -->
 			<div class="px-5 py-2 mb-10 text-base md:text-lg lg:text-xl bg-transparent border-2 border-oren rounded-lg flex flex-row items-center justify-between font-lora tracking-wide">
 				<p class="italic">Total</p>
 				<p class="italic">Rp{{ totalHarga() }}</p>
 			</div>
-			<!-- keluar -->
-			<div class="flex justify-end gap-x-2">
-				<router-link :to="'/home/' + user" class="p-2 text-xs lg:text-base bg-blue-600 rounded-lg font-roboto tracking-wide lg:hover:bg-gray-500 active:bg-gray-500 transition-all lg:duration-300 shadow-2xl">Checkout</router-link>
-				<router-link :to="'/home/' + user" class="p-2 text-xs lg:text-base bg-gray-600 rounded-lg font-roboto tracking-wide shadow-2xl">Kembali</router-link>
+
+			<!-- buttonRouter -->
+			<div class="flex justify-end gap-x-4 font-roboto">
+				<!-- checkout -->
+				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-blue-600 rounded-lg tracking-wider border-2 border-blue-600 shadow-xl text-white active:bg-transparent active:text-blue-600 lg:hover:bg-transparent lg:hover:text-blue-600 transition-all lg:duration-300">CHECKOUT</router-link>
+
+				<!-- back -->
+				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300">KEMBALI</router-link>
 			</div>
 		</div>
 		<Transition name="alert">
@@ -74,8 +81,6 @@
 			setTimeout(() => {
 				this.loading = false;
 			}, 1000);
-
-			// this.totalHarga();
 		},
 
 		computed: {
