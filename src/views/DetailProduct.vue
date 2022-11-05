@@ -3,7 +3,7 @@
 		<!-- loadingScreen -->
 		<Loading v-if="loading" />
 
-		<!-- DetailProduct -->
+		<!-- DetailProduct Page -->
 		<div class="DetailProduct py-5 font-lora select-none" v-else>
 			<!-- images -->
 			<div class="mx-5 flex flex-row justify-around items-center flex-wrap gap-5">
@@ -173,7 +173,7 @@
 			<div class="mt-20 mx-5 flex flex-row justify-end items-center gap-x-4">
 				<!-- buyNow -->
 				<div class="">
-					<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-blue-600 rounded-lg tracking-wider border-2 border-blue-600 shadow-xl text-white active:bg-transparent active:text-blue-600 lg:hover:bg-transparent lg:hover:text-blue-600 transition-all lg:duration-300">BELI SEKARANG</router-link>
+					<router-link :to="'/home/' + user + '/checkout/' + idProduk" class="p-2 text-xs md:text-sm lg:text-base bg-blue-600 rounded-lg tracking-wider border-2 border-blue-600 shadow-xl text-white active:bg-transparent active:text-blue-600 lg:hover:bg-transparent lg:hover:text-blue-600 transition-all lg:duration-300">BELI SEKARANG</router-link>
 				</div>
 
 				<!-- back -->

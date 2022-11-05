@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Keranjang from '../views/Keranjang.vue'
 import Profile from '../views/Profile.vue'
 import DetailProduct from '../views/DetailProduct.vue'
+import Checkout from '../views/Checkout.vue'
 
 const routes = [
 	{
@@ -40,6 +41,11 @@ const routes = [
 		path: '/home/:user/detailproduct/:id',
 		name: 'detailProduct',
 		component: DetailProduct
+	},
+	{
+		path: '/home/:user/checkout/:id',
+		name: 'checkout',
+		component: Checkout
 	},
 ]
 

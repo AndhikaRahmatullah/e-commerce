@@ -76,7 +76,7 @@
 								<!-- price -->
 								<p class="text-xs md:text-sm lg:text-base font-bold tracking-wider text-oren">Rp {{ prettyPrice(item.price * 15500) }}</p>
 								<!-- keranjang -->
-								<img src="../assets/cartCard.png" alt="" class="w-[30px] md:w-[30px] lg:w-[40px]" @click="produk(item.title, item.price, item.images[0])" />
+								<img src="../assets/cartCard.png" alt="" class="w-[30px] md:w-[30px] lg:w-[40px]" @click="produk(item.title, item.price, item.images[0], item.discountPercentage)" />
 							</div>
 						</div>
 					</div>
@@ -196,15 +196,18 @@
 				}
 			},
 
-			produk(productName, productPrice, productImage) {
+			produk(productName, productPrice, productImage, productDiscount) {
 				this.tambahKeranjang();
 				this.alert(productName);
+
 				const price = productPrice * 15500;
+				const roundDiscount = Math.round(productDiscount);
 				const id = Math.random();
+
 				const store = useStore();
 				store.$patch({
 					// like making a todolist
-					keranjangValue: [{ id: id, nama: productName, harga: price, gambar: productImage }, ...this.keranjangValue],
+					keranjangValue: [{ id: id, nama: productName, harga: price, gambar: productImage, discount: roundDiscount }, ...this.keranjangValue],
 				});
 			},
 

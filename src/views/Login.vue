@@ -1,5 +1,8 @@
 <template>
+	<!-- loadingScreen -->
 	<Loading id="loadingDisplay" />
+
+	<!-- Login Page -->
 	<div class="Login">
 		<div class="px-5 py-5 md:py-0 md:px-14 flex flex-col justify-center gap-y-5 md:gap-y-16 h-screen bg-cover font-roboto hidden" id="head">
 			<div class="">
