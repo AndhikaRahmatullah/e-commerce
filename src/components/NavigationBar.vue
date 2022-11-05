@@ -24,7 +24,7 @@
 							</button>
 							<ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none" aria-labelledby="dropdownMenuButton1">
 								<li>
-									<a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="#">Profil</a>
+									<router-link :to="'/home/' + user + '/profile'" @click="logout" class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">Profil</router-link>
 								</li>
 								<li>
 									<router-link to="/" @click="logout" class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">Keluar</router-link>
@@ -43,8 +43,10 @@
 			<div class="pt-20 overflow-y-auto py-4 px-3 rounded">
 				<ul class="space-y-2 text-white">
 					<li class="flex gap-x-2 items-center">
-						<img src="../assets/userMan.png" class="w-[50px]" alt="" />
-						<p class="">{{ user }}</p>
+						<router-link :to="'/home/' + user + '/profile'" class="flex gap-x-2 items-center">
+							<img src="../assets/userMan.png" class="w-[50px]" alt="" />
+							<p class="">{{ user }}</p>
+						</router-link>
 					</li>
 					<li class="">
 						<router-link :to="'/home/' + user + '/keranjang'" class="flex gap-x-2 items-center">

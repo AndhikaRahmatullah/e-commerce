@@ -5,6 +5,7 @@ export const useStore = defineStore('main', {
 		keranjangTotal: 0,
 		keranjangValue: [],
 		user: '',
+		profilUser: { username: "", fullName: "", phoneNumber: "", address: "" },
 		idProduk: 0,
 		loginFalse: false,
 		loginTrue: true,
