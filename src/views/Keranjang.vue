@@ -38,9 +38,6 @@
 
 			<!-- buttonRouter -->
 			<div class="flex justify-end gap-x-4 font-roboto">
-				<!-- checkout -->
-				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-blue-600 rounded-lg tracking-wider border-2 border-blue-600 shadow-xl text-white active:bg-transparent active:text-blue-600 lg:hover:bg-transparent lg:hover:text-blue-600 transition-all lg:duration-300">CHECKOUT</router-link>
-
 				<!-- back -->
 				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300">KEMBALI</router-link>
 			</div>

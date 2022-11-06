@@ -12,7 +12,7 @@
 					<p class="text-lg md:text-2xl text-white font-lora truncate">{{ user }}</p>
 				</div>
 				<div class="w-1/2">
-					<p class="text-2xl md:text-5xl font-fredoka text-white text-right">Shepie <span class="text-oren">Profil</span></p>
+					<p class="text-2xl md:text-5xl font-fredoka text-oren text-right">Shepie <span class="text-white">Profil</span></p>
 				</div>
 			</div>
 
