@@ -3,7 +3,7 @@
 		<!-- input -->
 		<div class="flex justify-center items-center gap-2 md:gap-4 font-lora">
 			<input type="text" class="form-control w-44 md:w-72 lg:w-96 text-sm md:text-base px-3 py-1.5 block border-2 border-oren tracking-wider font-normal text-oren bg-transparent shadow-xl rounded transition-all duration-500 outline-none focus:text-oren focus:ring-2 focus:border-oren focus:ring-oren" placeholder="Cari produk" @keypress.enter="keyword" v-model="key" />
-			<a data-mdb-ripple="true" data-mdb-ripple-color="light" href="#produk" class="py-2 px-3 text-xs md:text-sm lg:text-base bg-oren rounded-lg tracking-wider border-2 border-oren shadow-xl text-white active:bg-transparent active:text-oren lg:hover:bg-transparent lg:hover:text-oren transition-all lg:duration-300" @click="keyword">CARI</a>
+			<a data-mdb-ripple="true" data-mdb-ripple-color="light" href="#produk" class="py-2 px-3 text-xs md:text-sm lg:text-base bg-oren rounded-lg tracking-wider border-2 border-oren shadow-xl text-white active:bg-transparent active:text-oren lg:hover:bg-transparent lg:hover:text-oren transition-all lg:duration-300" @click="keyword">Cari</a>
 		</div>
 
 		<!-- kategori -->
@@ -21,7 +21,7 @@
 		</div>
 
 		<!-- category tag -->
-		<div class="mx-5 pt-10 text-sm md:text-lg lg:text-xl flex flex-row items-center gap-x-2 font-roboto" v-show="desCategory">
+		<div class="mx-5 pt-10 text-xs md:text-sm lg:text-base flex flex-row items-center gap-x-2 font-roboto" v-show="desCategory">
 			<p class="text-gray-500">Filter :</p>
 			<p class="py-1 px-2 bg-oren rounded-md text-white">{{ desCategoryName }}</p>
 			<img src="../assets/delete.png" alt="" class="w-[30px] md:w-[40px] cursor-pointer transition-all duration-75 active:scale-90" @click="hapusKategori" />

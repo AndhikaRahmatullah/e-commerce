@@ -7,97 +7,105 @@
 		<div class="Checkout p-5 min-h-screen font-roboto" v-else>
 			<!-- header -->
 			<div class="flex justify-start">
-				<p class="font-fredoka text-5xl text-oren tracking-wide">Shepie <span class="text-white">Checkout</span></p>
+				<p class="font-fredoka text-2xl md:text-4xl lg:text-5xl text-oren tracking-wide">Shepie <span class="text-white">Checkout</span></p>
 			</div>
 			<!-- product & payment section -->
-			<div class="mt-10 flex flex-row gap-10">
+			<div class="mt-10 flex flex-col lg:flex-row gap-10">
 				<!-- product -->
-				<div class="basis-2/3 select-none">
+				<div class="lg:basis-2/3 select-none">
 					<!-- product selection -->
 					<div class="p-2 flex flex-row justify-between items-center gap-3 bg-gradient-to-r from-oren to-oren2 rounded-lg shadow-2xl">
 						<div class="flex flex-row items-center gap-3">
 							<!-- image -->
-							<img :src="currentProduct.images[0]" alt="" class="w-[100px] h-[100px] border-2 border-gray-400 rounded-lg" />
+							<img :src="currentProduct.images[0]" alt="" class="w-[50px] md:w-[60px] xl:w-[80px] h-[50px] md:h-[60px] xl:h-[80px] border-2 border-gray-400 rounded-lg" />
 							<!-- title -->
-							<p class="w-[350px] truncate font-lora text-xl font-semibold">{{ currentProduct.title }}</p>
+							<p class="w-[100px] md:w-[250px] lg:w-[350px] truncate font-lora text-sm md:text-base lg:text-lg font-semibold">{{ currentProduct.title }}</p>
 						</div>
 						<!-- quatity -->
 						<div class="mx-5 flex flex-row justify-center items-center gap-3">
-							<button @click="decrementQuantity" class="p-1 bg-white font-semibold rounded-lg w-[30px]">-</button>
-							<p class="text-lg font-semibold font-lora">{{ quantityProduct }}</p>
-							<button @click="incrementQuantity" class="p-1 bg-white font-semibold rounded-lg w-[30px]">+</button>
+							<button @click="decrementQuantity" class="text-xs md:text-sm lg:text-base p-1 bg-white font-semibold rounded-lg w-[30px]">-</button>
+							<p class="text-sm md:text-base lg:text-lg font-semibold font-lora">{{ quantityProduct }}</p>
+							<button @click="incrementQuantity" class="text-xs md:text-sm lg:text-base p-1 bg-white font-semibold rounded-lg w-[30px]">+</button>
 						</div>
 						<!-- total price -->
-						<div class="">
-							<p class="text-xl w-full font-lora font-semibold tracking-wide"><span class="text-lg">Rp</span>{{ totalPriceDisplay }}</p>
+						<div class="hidden md:block">
+							<p class="md:text-base lg:text-lg w-full font-lora font-semibold tracking-wide"><span class="md:text-sm lg:text-base">Rp</span>{{ totalPriceDisplay }}</p>
 						</div>
 					</div>
 
 					<!-- product in cart -->
 					<div class="mt-10 p-2 bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg font-lora font-medium shadow-2xl">
-						<p class="mb-5 text-2xl tracking-wide text-white">Produk dalam keranjang :</p>
+						<div class="mb-5 pb-2 flex flex-row justify-between items-center border-b-4 border-white">
+							<p class="md:mx-5 text-lg md:text-xl lg:text-2xl tracking-wide text-white">Produk dalam keranjang :</p>
+							<router-link :to="'/home/' + user + '/keranjang'">
+								<img src="../assets/cart.png" alt="" class="md:mx-5 w-[35px] md:w-[40px]" />
+							</router-link>
+						</div>
 						<div class="flex flex-col gap-3">
 							<div class="flex flex-row justify-between items-center gap-3" v-for="product in cartProductList" :key="product.id">
 								<div class="flex flex-row items-center gap-3">
 									<!-- image -->
-									<img :src="product.gambar" alt="" class="w-[100px] h-[100px] border-2 border-gray-700 rounded-lg" />
+									<img :src="product.gambar" alt="" class="w-[50px] md:w-[60px] xl:w-[80px] h-[50px] md:h-[60px] xl:h-[80px] border-2 border-gray-700 rounded-lg" />
 									<!-- title -->
-									<p class="w-[350px] truncate text-xl text-white">{{ product.nama }}</p>
+									<p class="w-[140px] md:w-[350px] text-sm md:text-base lg:text-lg truncate text-white">{{ product.nama }}</p>
 								</div>
 								<div class="">
 									<!-- price -->
-									<p class="w-full text-xl text-white tracking-wide"><span class="text-lg">Rp</span>{{ prettyPrice(product.harga) }}</p>
+									<p class="w-full text-sm md:text-base lg:text-lg text-white tracking-wide"><span class="text-xs md:text-sm lg:text-base">Rp</span>{{ prettyPrice(product.harga) }}</p>
 								</div>
 							</div>
 						</div>
 
 						<!-- option payment with cart -->
-						<div class="flex justify-end" v-show="!cartProductListUndefined">
-							<button class="p-2 mt-5 text-xs md:text-sm lg:text-base bg-white rounded-lg tracking-wider border-2 border-white shadow-xl text-gray-500 active:bg-transparent active:text-white lg:hover:bg-transparent lg:hover:text-white transition-all lg:duration-300" @click="buyWithCart">{{ stringBuyWithCart }}</button>
+						<div class="mt-5 flex justify-end" v-show="!cartProductListUndefined">
+							<button class="p-2 text-xs md:text-sm lg:text-base bg-white rounded-lg tracking-wider border-2 border-white shadow-xl text-gray-500 active:bg-transparent active:text-white lg:hover:bg-transparent lg:hover:text-white transition-all lg:duration-300" @click="buyWithCart">{{ stringBuyWithCart }}</button>
 						</div>
 
 						<!-- undefined data massage -->
 						<div class="flex justify-center" v-show="cartProductListUndefined">
-							<p class="text-base text-white tracking-wide">Anda tidak memiliki produk didalam keranjang !</p>
+							<p class="text-sm md:text-base lg:text-lg text-white tracking-wide">Anda tidak memiliki produk didalam keranjang !</p>
 						</div>
 					</div>
 				</div>
 
 				<!-- payment section -->
-				<div class="basis-1/3">
+				<div class="lg:basis-1/3">
 					<div class="p-2 bg-gradient-to-r from-gray-100 to-gray-500 flex flex-col justify-between gap-5 rounded-lg font-lora shadow-2xl">
-						<p class="text-2xl font-semibold text-center tracking-wide">Pembayaran</p>
-						<div class="text-lg font-medium tracking-wide flex flex-col gap-2">
+						<!-- heading section -->
+						<p class="text-lg md:text-xl lg:text-2xl font-semibold text-center tracking-wide">Pembayaran</p>
+
+						<!-- body section -->
+						<div class="font-medium tracking-wide flex flex-col gap-1 md:gap-2 lg:gap-4">
 							<!-- profil user -->
-							<div class="py-2 flex flex-col gap-2 border-b-2 border-white">
+							<div class="py-2 flex flex-col gap-1 md:gap-2 lg:gap-4 border-b-2 border-white">
 								<div class="">
-									<p class="ml-4 italic font-bold text-left">- Data Pembeli</p>
+									<p class="ml-4 text-lg md:text-xl lg:text-2xl font-semibold text-left">Data Pembeli</p>
 								</div>
 								<!-- full name -->
-								<div class="flex flex-row justify-between items-start w-full">
-									<p class="w-[200px]">Nama lengkap :</p>
-									<p class="w-[200px] font-bold text-right truncate" v-if="profilUser.fullName">{{ profilUser.fullName }}</p>
-									<p class="w-[200px] font-bold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
+								<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-start w-full">
+									<p class="w-[150px] md:w-[200px]">Nama lengkap :</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-if="profilUser.fullName">{{ profilUser.fullName }}</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
 								</div>
 								<!-- address -->
-								<div class="flex flex-row justify-between items-start w-full">
-									<p class="w-[200px]">Alamat :</p>
-									<p class="w-[200px] font-bold text-right truncate" v-if="profilUser.address">{{ profilUser.address }}</p>
-									<p class="w-[200px] font-bold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
+								<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-start w-full">
+									<p class="w-[150px] md:w-[200px]">Alamat :</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-if="profilUser.address">{{ profilUser.address }}</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
 								</div>
 								<!-- phoneNumber -->
-								<div class="flex flex-row justify-between items-start w-full">
-									<p class="w-[200px]">Nomor telepon :</p>
-									<p class="w-[200px] font-bold text-right truncate" v-if="profilUser.phoneNumber">{{ profilUser.phoneNumber }}</p>
-									<p class="w-[200px] font-bold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
+								<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-start w-full">
+									<p class="w-[150px] md:w-[200px]">Nomor telepon :</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-if="profilUser.phoneNumber">{{ profilUser.phoneNumber }}</p>
+									<p class="w-[150px] md:w-[400px] lg:w-[200px] font-semibold text-right truncate" v-else><router-link :to="'/home/' + user + '/profile'">Tambabakan disini</router-link></p>
 								</div>
 							</div>
 
 							<!-- payment method -->
-							<div class="py-2 flex flex-col gap-2 border-b-2 border-white">
-								<p class="ml-4 italic font-bold text-left">- Metode Pembayaran</p>
+							<div class="py-2 flex flex-col gap-1 md:gap-2 lg:gap-4 border-b-2 border-white">
+								<p class="ml-4 text-lg md:text-xl lg:text-2xl font-semibold text-left">Metode Pembayaran</p>
 								<!-- select -->
-								<select class="form-select form-select-sm appearance-none block w-full px-2 py-1 text-sm text-gray-700 bg-white bg-clip-padding bg-no-repeat tracking-wide font-semibold border border-solid border-gray-300 rounded transition-all duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-oren outline-none focus:ring-1 focus:ring-oren" aria-label=".form-select-sm example">
+								<select class="form-select form-select-sm appearance-none block w-full px-2 py-1 text-xs md:text:sm lg:text-base text-gray-700 bg-white bg-clip-padding bg-no-repeat tracking-wide font-medium border border-solid border-gray-300 rounded transition-all duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-oren outline-none focus:ring-1 focus:ring-oren" aria-label=".form-select-sm example">
 									<option selected disabled>Pilih metode pembayaran</option>
 									<option value="bca" class="tracking-wide font-medium">Bank BCA</option>
 									<option value="mandiri" class="tracking-wide font-medium">Bank Mandiri</option>
@@ -108,38 +116,38 @@
 
 							<!-- payment details -->
 							<div class="">
-								<p class="ml-4 italic font-bold text-left">- Rincian Pembayaran</p>
+								<p class="ml-4 text-lg md:text-xl lg:text-2xl font-semibold text-left">Rincian Pembayaran</p>
 							</div>
 							<!-- quantity -->
-							<div class="flex flex-row justify-between items-end w-full">
-								<p class="w-[200px]">Jumlah barang :</p>
-								<p class="font-bold" v-if="!buyWithCartOptions">{{ quantityProduct }}</p>
-								<p class="font-bold" v-else>{{ quantityProduct + keranjangValue.length }}</p>
+							<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-end w-full">
+								<p class="w-[150px] md:w-[200px]">Jumlah barang :</p>
+								<p class="font-semibold" v-if="!buyWithCartOptions">{{ quantityProduct }}</p>
+								<p class="font-semibold" v-else>{{ quantityProduct + keranjangValue.length }}</p>
 							</div>
 							<!-- price -->
-							<div class="flex flex-row justify-between items-end w-full">
-								<p class="w-[200px]">Harga :</p>
-								<p class="font-bold"><span class="text-base">Rp</span>{{ totalPriceDisplay }}</p>
+							<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-end w-full">
+								<p class="w-[150px] md:w-[200px]">Harga :</p>
+								<p class="font-semibold"><span class="text-sm">Rp</span>{{ totalPriceDisplay }}</p>
 							</div>
 							<!-- discount -->
-							<div class="flex flex-row justify-between items-end w-full">
-								<p class="w-[200px]">Diskon :</p>
-								<p class="font-bold">{{ currentProduct.discountPercentage }}<span class="text-base">%</span> ( <span class="text-base">Rp</span>{{ cumulativeDiscountDisplay }} )</p>
+							<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-end w-full">
+								<p class="w-[150px] md:w-[200px]">Diskon :</p>
+								<p class="font-semibold">{{ currentProduct.discountPercentage }}<span class="text-sm">%</span> ( <span class="text-sm">Rp</span>{{ cumulativeDiscountDisplay }} )</p>
 							</div>
 							<!-- ship -->
-							<div class="flex flex-row justify-between items-end w-full">
-								<p class="w-[200px]">Ongkos Kirim :</p>
-								<p class="font-bold"><span class="text-base">Rp</span>{{ shipDisplay }}</p>
+							<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-end w-full">
+								<p class="w-[150px] md:w-[200px]">Ongkos Kirim :</p>
+								<p class="font-semibold"><span class="text-sm">Rp</span>{{ shipDisplay }}</p>
 							</div>
 							<!-- price product in cart -->
-							<div class="flex flex-row justify-between items-end w-full" v-show="buyWithCartOptions">
-								<p class="w-[200px]">Harga Produk dalam keranjang* :</p>
-								<p class="font-bold"><span class="text-base">Rp</span>{{ totalPriceCartDisplay }}</p>
+							<div class="text-sm md:text-base lg:text-lg flex flex-row justify-between items-end w-full" v-show="buyWithCartOptions">
+								<p class="w-[150px] md:w-[200px]">Harga Produk dalam keranjang* :</p>
+								<p class="font-semibold"><span class="text-sm">Rp</span>{{ totalPriceCartDisplay }}</p>
 							</div>
 							<!-- cumulative -->
-							<div class="mt-5 p-2 flex flex-row justify-between items-end w-full bg-gradient-to-r from-oren to-oren2 rounded-lg shadow-lg">
-								<p class="w-[200px]">Total Bayar :</p>
-								<p class="font-bold"><span class="text-base">Rp</span>{{ totalPriceCumulativeDisplay }}</p>
+							<div class="text-sm md:text-base lg:text-lg mt-5 p-2 flex flex-row justify-between items-end w-full bg-gradient-to-r from-oren to-oren2 rounded-lg shadow-lg">
+								<p class="w-[150px] md:w-[200px]">Total Bayar :</p>
+								<p class="font-semibold"><span class="text-sm">Rp</span>{{ totalPriceCumulativeDisplay }}</p>
 							</div>
 							<!-- buy now -->
 							<div class="mt-3 flex justify-end w-full">
@@ -148,13 +156,13 @@
 						</div>
 					</div>
 					<!-- note cart -->
-					<p class="mt-2 text-white tracking-wider text-sm" v-show="buyWithCartOptions">*Harga sudah termasuk diskon dan ongkos kirim (jika ada), dari setiap produk.</p>
+					<p class="mt-2 text-white tracking-wide text-xs md:text-sm lg:text-base" v-show="buyWithCartOptions">*Harga sudah termasuk diskon dan ongkos kirim (jika ada), dari setiap produk.</p>
 				</div>
 			</div>
 
 			<!-- back -->
-			<div class="mt-20">
-				<router-link :to="'/home/' + user + '/detailproduct/' + idProduk" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300">KEMBALI</router-link>
+			<div class="mt-20 flex justify-end">
+				<router-link :to="'/home/' + user + '/detailproduct/' + idProduk" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300 font-lora">Kembali</router-link>
 			</div>
 		</div>
 

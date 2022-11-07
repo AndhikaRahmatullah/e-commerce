@@ -4,13 +4,13 @@
 			<!-- modal -->
 			<div class="mt-[100px] md:mt-[60px] lg:mt-[155px] flex flex-col justify-center items-center">
 				<!-- head -->
-				<div class="mt-5 px-3 py-2 text-lg md:text-3xl lg:text-4xl font-lora text-white tracking-wide transition-all duration-[2000ms] rounded-lg bg-transparent" ref="shepie">
+				<div class="mt-5 px-3 py-2 text-lg md:text-2xl lg:text-3xl font-lora text-white tracking-wide transition-all duration-[2000ms] rounded-lg bg-transparent" ref="shepie">
 					<p class="">Selamat Datang di <span class="text-[#2396DC] font-bold">Shepie</span></p>
 				</div>
 
 				<!-- description -->
 				<div class="">
-					<p class="py-3 md:py-4 lg:py-5 px-6 text-base md:text-lg lg:text-xl font-lora text-white text-center tracking-wide leading-tight">Shepie adalah salah satu aplikasi sederhana berbasis web dengan tema E-Commerce yang saya buat. Aplikasi ini dibuat menggunakan Teknologi <a href="https://vuejs.org/" class="hover:underline active:underline">Vue.js</a> (JavaScript), <a href="https://tailwindcss.com/" class="hover:underline active:underline">TailwindCSS</a> (CSS) dan beberapa plugin lainnya sebagai pendukung.</p>
+					<p class="py-3 md:py-4 lg:py-5 px-6 text-sm md:text-base lg:text-lg font-lora text-white text-center tracking-wide leading-tight">Shepie adalah salah satu aplikasi sederhana berbasis web dengan tema E-Commerce yang saya buat. Aplikasi ini dibuat menggunakan Teknologi <a href="https://vuejs.org/" class="hover:underline active:underline">Vue.js</a> (JavaScript), <a href="https://tailwindcss.com/" class="hover:underline active:underline">TailwindCSS</a> (CSS) dan beberapa plugin lainnya sebagai pendukung.</p>
 				</div>
 
 				<!-- footer -->
@@ -32,7 +32,7 @@
 
 			<!-- closeButton -->
 			<div class="text-right">
-				<button @click="$emit('closeNotif')" class="mr-5 mb-5 px-2 py-1 text-sm md:text-base rounded-lg w-fit bg-[#233ADC] hover:bg-gray-500 active:bg-gray-500 transition-all duration-300 text-white shadow-lg tracking-wider">Close</button>
+				<button @click="$emit('closeNotif')" class="mr-5 mb-5 p-2 text-xs md:text-sm lg:text-base rounded-lg w-fit bg-[#233ADC] hover:bg-gray-500 active:bg-gray-500 transition-all duration-300 text-white shadow-lg tracking-wider font-lora">Keluar</button>
 			</div>
 		</div>
 	</div>

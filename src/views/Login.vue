@@ -27,19 +27,19 @@
 
 			<!-- form -->
 			<Transition name="dropDown">
-				<div class="flex gap-3 items-center" v-show="loginTrue" v-if="transition">
+				<div class="flex gap-3 items-center font-lora" v-show="loginTrue" v-if="transition">
 					<div class="md:w-[400px] lg:w-96">
 						<input type="text" class="form-control block w-full text-sm md:text-base px-3 py-1.5 border-2 border-oren md:border-white tracking-wider font-normal text-oren bg-transparent md:bg-white bg-clip-padding rounded transition-all duration-500 outline-none focus:text-oren focus:bg-transparent focus:border-oren focus:ring-0" placeholder="Masukan username" v-model="username" @keypress.enter="localLogin()" />
 					</div>
-					<button type="button" class="inline-block px-4 md:px-6 py-2.5 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300" @click="localLogin()">lanjut</button>
+					<button type="button" class="inline-block px-4 md:px-6 py-2 lg:py-1.5 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm lg:text-base tracking-wide leading-tight rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300" @click="localLogin()">Lanjut</button>
 				</div>
 			</Transition>
 
 			<!-- button actions -->
 			<Transition name="slide-fade2">
 				<div class="absolute bottom-[40px]" v-show="loginFalse" v-if="transition">
-					<router-link :to="'/home/' + user" class="mr-2 inline-block px-4 md:px-6 py-2.5 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300">masuk</router-link>
-					<button type="button" class="inline-block px-4 md:px-6 py-2.5 bg-gray-700 border-2 border-gray-700 text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-white hover:text-gray-700 hover:border-white hover:shadow-lg transition-all duration-300" @click="logout()">keluar dari {{ user }}</button>
+					<router-link :to="'/home/' + user" class="mr-2 inline-block px-4 md:px-6 py-1.5 lg:py-2 bg-transparent md:bg-oren border-2 border-oren text-oren md:text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-transparent hover:text-oren hover:shadow-lg active:bg-oren active:shadow-lg transition-all duration-300">masuk</router-link>
+					<button type="button" class="inline-block px-4 md:px-6 py-1.5 lg:py-2 bg-gray-700 border-2 border-gray-700 text-white font-medium text-xs md:text-sm tracking-wide leading-tight uppercase rounded shadow-md hover:bg-white hover:text-gray-700 hover:border-white hover:shadow-lg transition-all duration-300" @click="logout()">keluar dari {{ user }}</button>
 				</div>
 			</Transition>
 		</div>

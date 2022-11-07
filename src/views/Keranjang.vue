@@ -3,43 +3,47 @@
 		<!-- loadingScreen -->
 		<Loading v-if="loading" />
 
-		<!-- keranjangBody -->
+		<!-- Keranjang page -->
 		<div class="p-5 min-h-screen text-white" v-else>
-			<div class="mb-5 flex justify-start bg-gradient-to-br from-oren to-oren2 rounded-lg shadow-2xl select-none">
-				<p class="p-2 text-xl md:text-2xl lg:text-4xl font-lora font-bold tracking-wide">
-					Keranjang <span class="text-xs md:text-sm lg:text-lg">( {{ keranjangTotal }} )</span>
-				</p>
+			<!-- header -->
+			<div class="flex justify-start">
+				<p class="font-fredoka text-2xl md:text-4xl lg:text-5xl text-oren tracking-wide">Shepie <span class="text-white">Keranjang</span></p>
 			</div>
 
 			<!-- produk -->
-			<div class="p-2 mb-3 bg-oren font-roboto rounded-lg shadow-2xl select-none">
+			<div class="p-2 mt-10 mb-3 bg-oren font-roboto rounded-lg shadow-2xl select-none">
 				<div class="flex flex-col gap-2" v-if="keranjangTotal >= 1">
 					<div class="px-1 flex flex-row items-center justify-between lg:hover:bg-gray-500 active:bg-gray-500 transition-all lg:duration-300 group rounded-lg" v-for="item in keranjangValue" :key="item.id">
 						<div class="flex flex-row items-center justify-center gap-2">
+							<!-- image -->
 							<img :src="item.gambar" alt="" class="w-[30px] md:w-[40px] lg:w-[50px] h-[30px] md:h-[40px] lg:h-[50px] rounded-md border-2 border-gray-400" />
-							<p class="w-[150px] md:w-[500px] lg:w-[700px] text-xs md:text-sm lg:text-base truncate">{{ item.nama }}</p>
+							<!-- title -->
+							<p class="w-[150px] md:w-[500px] lg:w-[700px] text-sm md:text-base lg:text-lg truncate">{{ item.nama }}</p>
 						</div>
 						<div class="flex flex-row items-center">
-							<p class="text-xs md:text-sm lg:text-base text-red-600 lg:group-hover:text-white group-active:text-white transition-all lg:duration-300"><span class="text-xs">Rp</span>{{ prettyPrice(item.harga) }}</p>
+							<!-- price -->
+							<p class="text-sm md:text-base lg:text-lg text-red-600 lg:group-hover:text-white group-active:text-white transition-all lg:duration-300"><span class="text-xs md:text-sm lg:text-base">Rp</span>{{ prettyPrice(item.harga) }}</p>
+							<!-- remove product -->
 							<img src="../assets/delete.png" alt="" class="w-[30px] md:w-[40px] cursor-pointer" @click="localHapusProdukKeranjang(item.nama, item.id)" />
 						</div>
 					</div>
 				</div>
 				<div class="mx-10" v-else>
-					<p class="text-xs md:text-base lg:text-lg text-center font-lora italic tracking-wide">Anda masih belum memiliki produk di dalam keranjang !</p>
+					<!-- udefined product massage -->
+					<p class="text-sm md:text-base lg:text-lg text-center font-lora italic tracking-wide">Anda masih belum memiliki produk di dalam keranjang !</p>
 				</div>
 			</div>
 
-			<!-- totalHarga -->
-			<div class="px-5 py-2 mb-10 text-base md:text-lg lg:text-xl bg-transparent border-2 border-oren rounded-lg flex flex-row items-center justify-between font-lora tracking-wide">
+			<!-- total price -->
+			<div class="px-5 py-2 mb-10 text-lg md:text-xl lg:text-2xl bg-transparent border-2 border-oren rounded-lg flex flex-row items-center justify-between font-lora tracking-wide">
 				<p class="italic">Total</p>
-				<p class="italic">Rp{{ totalHarga() }}</p>
+				<p class="italic"><span class="text-sm md:text-base lg:text-lg">Rp</span>{{ totalHarga() }}</p>
 			</div>
 
 			<!-- buttonRouter -->
-			<div class="flex justify-end gap-x-4 font-roboto">
+			<div class="flex justify-end gap-x-4 font-lora">
 				<!-- back -->
-				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300">KEMBALI</router-link>
+				<router-link :to="'/home/' + user" class="p-2 text-xs md:text-sm lg:text-base bg-gray-500 rounded-lg tracking-wider border-2 border-gray-500 shadow-xl text-white active:bg-transparent active:text-gray-500 lg:hover:bg-transparent lg:hover:text-gray-500 transition-all lg:duration-300">Kembali</router-link>
 			</div>
 		</div>
 		<Transition name="alert">
