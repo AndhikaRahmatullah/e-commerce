@@ -105,12 +105,12 @@
 							<div class="py-2 flex flex-col gap-1 md:gap-2 lg:gap-4 border-b-2 border-white">
 								<p class="ml-4 text-lg md:text-xl lg:text-2xl font-semibold text-left">Metode Pembayaran</p>
 								<!-- select -->
-								<select class="form-select form-select-sm appearance-none block w-full px-2 py-1 text-xs md:text:sm lg:text-base text-gray-700 bg-white bg-clip-padding bg-no-repeat tracking-wide font-medium border border-solid border-gray-300 rounded transition-all duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-oren outline-none focus:ring-1 focus:ring-oren" aria-label=".form-select-sm example">
+								<select class="form-select form-select-sm appearance-none block w-full px-2 py-1 text-xs md:text:sm lg:text-base text-gray-700 bg-white bg-clip-padding bg-no-repeat tracking-wide font-medium border border-solid border-gray-300 rounded transition-all duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-oren outline-none focus:ring-1 focus:ring-oren" aria-label=".form-select-sm example" id="atmSelected">
 									<option selected disabled>Pilih metode pembayaran</option>
-									<option value="bca" class="tracking-wide font-medium">Bank BCA</option>
-									<option value="mandiri" class="tracking-wide font-medium">Bank Mandiri</option>
-									<option value="bni" class="tracking-wide font-medium">Bank BNI</option>
-									<option value="bsi" class="tracking-wide font-medium">Bank BSI</option>
+									<option value="Bank BCA" class="tracking-wide font-medium">Bank BCA</option>
+									<option value="Bank Mandiri" class="tracking-wide font-medium">Bank Mandiri</option>
+									<option value="Bank BNI" class="tracking-wide font-medium">Bank BNI</option>
+									<option value="Bank BSI" class="tracking-wide font-medium">Bank BSI</option>
 								</select>
 							</div>
 
@@ -151,7 +151,7 @@
 							</div>
 							<!-- buy now -->
 							<div class="mt-3 flex justify-end w-full">
-								<button class="p-2 mt-5 text-xs md:text-sm lg:text-base bg-oren rounded-lg tracking-wider border-2 border-oren shadow-xl text-white active:bg-transparent active:text-oren lg:hover:bg-transparent lg:hover:text-oren transition-all lg:duration-300">Buat Pesanan</button>
+								<Payment :nameUser="profilUser.fullName" :addressUser="profilUser.address" :phoneUser="profilUser.phoneNumber" :totalPrice="totalPriceCumulativeDisplay" :atmUser="atmValue" @click="atm" />
 							</div>
 						</div>
 					</div>
@@ -176,6 +176,7 @@
 	import { mapState, mapActions } from "pinia";
 	import Loading from "../components/Loading.vue";
 	import Alert from "../components/Alert.vue";
+	import Payment from "../components/Payment.vue";
 	export default {
 		name: "Checkout",
 
@@ -195,12 +196,14 @@
 				cartProductListUndefined: false,
 				buyWithCartOptions: false,
 				stringBuyWithCart: "Masukan dalam pembayaran",
+				atmValue: "",
 			};
 		},
 
 		components: {
 			Loading,
 			Alert,
+			Payment,
 		},
 
 		created() {
@@ -332,11 +335,6 @@
 
 			cartProduct() {
 				const product = this.keranjangValue;
-				if (product.length === 0) {
-					this.cartProductListUndefined = true;
-				} else {
-					this.cartProductList = product;
-				}
 
 				// mathematics
 				let allPrice = [];
@@ -356,13 +354,19 @@
 					allPrice.push(cumulative);
 				}
 
-				// totalPrice
-				let totalPriceCart = allPrice.reduce((a, b) => {
-					return a + b;
-				});
-				this.totalPriceCartDisplay = this.prettyPrice(totalPriceCart);
+				if (product.length === 0) {
+					this.cartProductListUndefined = true;
+				} else {
+					this.cartProductList = product;
 
-				return totalPriceCart;
+					// totalPrice
+					let totalPriceCart = allPrice.reduce((a, b) => {
+						return a + b;
+					});
+
+					this.totalPriceCartDisplay = this.prettyPrice(totalPriceCart);
+					return totalPriceCart;
+				}
 			},
 
 			buyWithCart() {
@@ -377,6 +381,11 @@
 					this.totalPriceCumulative();
 					this.alert(`Produk keranjang dihapus dari pembayaran !`);
 				}
+			},
+
+			atm() {
+				const atmSelected = document.getElementById(`atmSelected`);
+				this.atmValue = atmSelected.value;
 			},
 
 			alert(text) {
