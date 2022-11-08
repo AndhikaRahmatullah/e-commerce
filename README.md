@@ -1,19 +1,5 @@
 # e-commerce
 
-## Project setup
-```
-npm install
-```
+Shepie adalah salah satu aplikasi sederhana berbasis web dengan tema E-Commerce yang saya buat. Aplikasi ini dibuat menggunakan Teknologi Vue.js, TailwnidCSS dan beberapa plugin lainnya sebagai pendukung.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Link Website](http://www.shepiedika.byethost7.com/)
