@@ -106,7 +106,7 @@
 								<p class="ml-4 text-lg md:text-xl lg:text-2xl font-semibold text-left">Metode Pembayaran</p>
 								<!-- select -->
 								<select class="form-select form-select-sm appearance-none block w-full px-2 py-1 text-xs md:text:sm lg:text-base text-gray-700 bg-white bg-clip-padding bg-no-repeat tracking-wide font-medium border border-solid border-gray-300 rounded transition-all duration-300 m-0 focus:text-gray-700 focus:bg-white focus:border-oren outline-none focus:ring-1 focus:ring-oren" aria-label=".form-select-sm example" id="atmSelected">
-									<option selected disabled>Pilih metode pembayaran</option>
+									<option selected disabled value="noSelect">Pilih metode pembayaran</option>
 									<option value="Bank BCA" class="tracking-wide font-medium">Bank BCA</option>
 									<option value="Bank Mandiri" class="tracking-wide font-medium">Bank Mandiri</option>
 									<option value="Bank BNI" class="tracking-wide font-medium">Bank BNI</option>

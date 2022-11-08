@@ -107,7 +107,7 @@
 			},
 
 			sendAll() {
-				if (this.nameUser && this.addressUser && this.phoneUser && this.atmUser) {
+				if (this.nameUser && this.addressUser && this.phoneUser && this.atmUser !== "noSelect") {
 					if (this.inputCode === this.code) {
 						this.alert(`Terimakasih ! Pembayaran berhasil dilakukan. `);
 						this.buttonChangeSend();
